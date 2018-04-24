@@ -78,6 +78,11 @@
     </init-param>
     <load-on-startup>1</load-on-startup>
   </servlet>
+  <servlet>
+    <servlet-name>interface_url-init_servlet</servlet-name>
+    <servlet-class>com.ningkangkj.wxWebService.start.InterfaceUrlInitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
   <servlet-mapping>
     <servlet-name>springMvc</servlet-name>
     <url-pattern>/</url-pattern>
@@ -86,7 +91,7 @@
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
-  <error-page>
+<!--  <error-page>  TODO
     <error-code>404</error-code>
     <location>/WEB-INF/error/error.jsp</location>
   </error-page>
@@ -95,7 +100,7 @@
     <error-code>500</error-code>
     <location>/WEB-INF/error/error.jsp</location>
   </error-page>
-
+-->
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.css</url-pattern>
@@ -125,7 +130,7 @@
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
 
-  <jsp-config>
+<!--  <jsp-config>
     <jsp-property-group>
       <display-name>jspConfiguration</display-name>
       <url-pattern>*.jsp</url-pattern>
@@ -133,6 +138,6 @@
       <scripting-invalid>false</scripting-invalid>
       <include-prelude>/WEB-INF/common/head.jsp</include-prelude>
     </jsp-property-group>
-  </jsp-config>
+  </jsp-config>-->
 
 </web-app>
