@@ -1,7 +1,9 @@
 package com.ningkangkj.wxWebService.start;
 
 import com.ningkangkj.wxWebService.util.GlobalConstants;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +18,7 @@ import java.util.Properties;
  */
 public class InterfaceUrlInit {
     /*log4j日志调用*/
-    private static Logger logger = Logger.getLogger(InterfaceUrlInit.class);
+    private static Logger logger = LoggerFactory.getLogger(InterfaceUrlInit.class);
 
     public synchronized static void init(){
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
@@ -54,5 +56,13 @@ public class InterfaceUrlInit {
                 }
             }
         }
+    }
+    private static Logger log = LoggerFactory.getLogger(InterfaceUrlInit.class);
+
+    public static void main(String[] args) {
+
+        log.debug("debug");
+        log.info("info");
+        log.error("error");
     }
 }

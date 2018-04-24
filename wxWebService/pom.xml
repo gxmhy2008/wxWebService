@@ -19,7 +19,6 @@
     <mybatis.version>3.4.6</mybatis.version>
   </properties>
 
-
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -51,10 +50,29 @@
     </dependency>
 
     <!--mybatis-plus-->
+    <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus -->
     <dependency>
       <groupId>com.baomidou</groupId>
       <artifactId>mybatis-plus</artifactId>
-      <version>2.0.5</version>
+      <version>2.1.9</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-nop -->
+    <!--日志包-->
+    <!--确保mybatis-plus generator可以正常执行-->
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
+    <!--TODO log4j和slf4j的关系-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.25</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.25</version>
+      <!-- <scope>test</scope> -->
     </dependency>
 
     <!--mysql-->
@@ -102,14 +120,9 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
     </dependency>
-
-    <!--日志包-->
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
-    </dependency>
   </dependencies>
+
+
 
   <build>
     <finalName>wxWebService</finalName>

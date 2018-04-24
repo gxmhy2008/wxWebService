@@ -21,7 +21,10 @@ public class CustomGenerator {
         GlobalConfig gc = new GlobalConfig();
 
         //java源码所在目录
-        gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
+        //windows目录
+        //gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
+        //linux目录
+        gc.setOutputDir("/home/Work/idea/wxWebService/wxWebService/src/main/java");
 
         gc.setFileOverride(true);
         gc.setActiveRecord(false);
@@ -51,8 +54,13 @@ public class CustomGenerator {
             }
         });*/
         dsc.setDriverName("com.mysql.jdbc.Driver");
+
+        /*
         dsc.setUrl(
             "jdbc:mysql://192.168.1.15:3306/videowebservice?useUnicode=true&amp;characterEncoding=UTF-8&amp;generateSimpleParameterMetadata=true");
+        */
+        dsc.setUrl(
+                "jdbc:mysql://127.0.0.1:3306/wxWebService?useUnicode=true&amp;characterEncoding=UTF-8&amp;generateSimpleParameterMetadata=true");
         dsc.setUsername("root");
         dsc.setPassword("123456");
         mpg.setDataSource(dsc);
@@ -69,8 +77,8 @@ public class CustomGenerator {
 
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.ningkangkj.wxWebService.MybatisPlus");
-        pc.setModuleName("generator");
+        pc.setParent("com.ningkangkj.wxWebService");
+        pc.setModuleName("customGenerator");
         mpg.setPackageInfo(pc);
 
         // 执行生成
