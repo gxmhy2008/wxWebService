@@ -1,6 +1,7 @@
 package com.ningkangkj.wxWebService.start;
 
 import com.ningkangkj.wxWebService.util.GlobalConstants;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,6 +15,9 @@ import java.util.Properties;
  * @Date 2018/04/24
  */
 public class InterfaceUrlInit {
+    /*log4j日志调用*/
+    private static Logger logger = Logger.getLogger(InterfaceUrlInit.class);
+
     public synchronized static void init(){
         ClassLoader cl = Thread.currentThread().getContextClassLoader();
         Properties props = new Properties();
@@ -28,6 +32,7 @@ public class InterfaceUrlInit {
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
                 System.out.println("key:"+key+", value:"+props.get(key));
+                logger.info("key:"+key+", value:"+props.get(key));
             }
 
             props = new Properties();
@@ -36,6 +41,7 @@ public class InterfaceUrlInit {
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
                 System.out.println("key:"+key+", value:"+props.get(key));
+                logger.info("key:"+key+", value:"+props.get(key));
             }
         }catch (IOException e) {
             e.printStackTrace();
