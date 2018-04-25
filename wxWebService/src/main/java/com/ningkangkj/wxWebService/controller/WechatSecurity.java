@@ -1,5 +1,7 @@
 package com.ningkangkj.wxWebService.controller;
 
+import com.ningkangkj.wxWebService.dispatcher.EventDispatcher;
+import com.ningkangkj.wxWebService.dispatcher.MsgDispatcher;
 import com.ningkangkj.wxWebService.util.MessageUtil;
 import com.ningkangkj.wxWebService.util.SignUtil;
 import org.slf4j.Logger;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
@@ -62,10 +63,15 @@ public class WechatSecurity {
      */
     @RequestMapping(value = "security", method = RequestMethod.POST)
     public void DoPost(HttpServletRequest request,HttpServletResponse response) {
-        System.out.println("这是post方法");
         try {
             Map<String, String> map = MessageUtil.parseXml(request);
-            System.out.println("==================================="+map.get("Content"));
+            String msgType = map.get("MsgType");
+            System.out.println("****消息内容: "+map.get("Content"));
+            if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgType)) {
+                EventDispatcher.processEvent(map);
+            }else{
+                MsgDispatcher.processMessage(map);
+            }
         } catch (Exception e) {
             logger.error(e.getMessage());
         }

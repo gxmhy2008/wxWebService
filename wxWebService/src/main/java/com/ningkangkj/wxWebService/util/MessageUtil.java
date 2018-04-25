@@ -65,6 +65,16 @@ public class MessageUtil {
     public static final String REQ_MESSAGE_TYPE_VOICE = "voice";
 
     /**
+     * 请求消息类型：视频
+     */
+    public static final String REQ_MESSAGE_TYPE_VIDEO = "video";
+
+    /**
+     * 请求消息类型：视频
+     */
+    public static final String REQ_MESSAGE_TYPE_SHORTVIDEO = "shortvideo";
+
+    /**
      * 请求消息类型：推送
      */
     public static final String REQ_MESSAGE_TYPE_EVENT = "event";
@@ -80,9 +90,24 @@ public class MessageUtil {
     public static final String EVENT_TYPE_UNSUBSCRIBE = "unsubscribe";
 
     /**
-     * 事件类型：CLICK(自定义菜单点击事件)
+     * 事件类型：SCAN(扫描二维码事件)
+     */
+    public static final String EVENT_TYPE_SCAN = "SCAN";
+
+    /**
+     * 事件类型：LOCATION(位置上报事件)
+     */
+    public static final String EVENT_TYPE_LOCATION = "LOCATION";
+
+    /**
+     * 事件类型：CLICK(自定义菜单点击事件,点击菜单拉取消息时的事件推送)
      */
     public static final String EVENT_TYPE_CLICK = "CLICK";
+
+    /**
+     * 事件类型：VIEW(自定义菜单点击事件,点击菜单跳转链接时的事件推送)
+     */
+    public static final String EVENT_TYPE_VIEW = "VIEW";
 
     /**
      * @Description 解析微信发来的请求（XML)
