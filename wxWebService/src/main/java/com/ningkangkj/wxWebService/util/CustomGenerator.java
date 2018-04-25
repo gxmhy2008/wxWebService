@@ -22,9 +22,9 @@ public class CustomGenerator {
 
         //java源码所在目录
         //windows目录
-        //gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
+        gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
         //linux目录
-        gc.setOutputDir("/home/Work/idea/wxWebService/wxWebService/src/main/java");
+        //gc.setOutputDir("/home/Work/idea/wxWebService/wxWebService/src/main/java");
 
         gc.setFileOverride(true);
         gc.setActiveRecord(false);
@@ -55,12 +55,13 @@ public class CustomGenerator {
         });*/
         dsc.setDriverName("com.mysql.jdbc.Driver");
 
-        /*
+
         dsc.setUrl(
             "jdbc:mysql://192.168.1.15:3306/videowebservice?useUnicode=true&amp;characterEncoding=UTF-8&amp;generateSimpleParameterMetadata=true");
-        */
+        /*
         dsc.setUrl(
                 "jdbc:mysql://127.0.0.1:3306/wxWebService?useUnicode=true&amp;characterEncoding=UTF-8&amp;generateSimpleParameterMetadata=true");
+        */
         dsc.setUsername("root");
         dsc.setPassword("123456");
         mpg.setDataSource(dsc);
