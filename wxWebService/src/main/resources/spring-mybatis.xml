@@ -58,11 +58,11 @@
     </bean>-->
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.ningkangkj.wxWebService.dao"/>
+        <property name="basePackage" value="com.ningkangkj.wxWebService.mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
 
-    <!--配置事务管理-->
+    <!--TODO 配置事务管理-->
     <bean id="transactionMannager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -70,7 +70,7 @@
     <!--注解方式配置事物-->
     <!--<tx:annotation-driven transaction-manager="transactionMannager"/>-->
 
-    <!--拦截器方式配置事物-->
+    <!--TODO 拦截器方式配置事物-->
     <tx:advice id="transactionAdvice" transaction-manager="transactionMannager">
         <tx:attributes>
             <tx:method name="add*" propagation="REQUIRED"/>
