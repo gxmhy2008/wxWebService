@@ -1,4 +1,4 @@
-package com.ningkangkj.wxWebService.entity.vo;
+package com.ningkangkj.wxWebService.entity.req;
 
 /**
  * @Descrition 微信请求消息基本类

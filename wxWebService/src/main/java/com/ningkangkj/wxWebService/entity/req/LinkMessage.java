@@ -1,4 +1,4 @@
-package com.ningkangkj.wxWebService.entity.vo;
+package com.ningkangkj.wxWebService.entity.req;
 
 /**
  * @Description 链接消息体

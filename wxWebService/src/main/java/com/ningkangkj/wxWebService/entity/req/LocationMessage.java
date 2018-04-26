@@ -1,4 +1,4 @@
-package com.ningkangkj.wxWebService.entity.vo;
+package com.ningkangkj.wxWebService.entity.req;
 
 /**
  * @Description 地理位置消息
