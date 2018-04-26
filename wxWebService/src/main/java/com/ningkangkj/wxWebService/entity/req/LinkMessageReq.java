@@ -5,35 +5,35 @@ package com.ningkangkj.wxWebService.entity.req;
  * @Author luckypt
  * @Date 2018/04/25
  */
-public class LinkMessage extends BaseMessage {
+public class LinkMessageReq extends BaseMessageReq {
     //消息标题
-    private String title;
+    private String Title;
     //消息描述
-    private String description;
+    private String Description;
     //消息链接
-    private String url;
+    private String Url;
 
     public String getTitle() {
-        return title;
+        return Title;
     }
 
     public void setTitle(String title) {
-        this.title = title;
+        Title = title;
     }
 
     public String getDescription() {
-        return description;
+        return Description;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        Description = description;
     }
 
     public String getUrl() {
-        return url;
+        return Url;
     }
 
     public void setUrl(String url) {
-        this.url = url;
+        Url = url;
     }
 }

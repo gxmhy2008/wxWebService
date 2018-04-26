@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -70,7 +71,14 @@ public class WechatSecurity {
             if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgType)) {
                 EventDispatcher.processEvent(map);
             }else{
-                MsgDispatcher.processMessage(map);
+                //TODO 把普通消息发送给公众号客户
+                String respXML = MsgDispatcher.processMessage(map);
+               // System.out.println(respXML);
+                response.setCharacterEncoding("utf-8");
+                PrintWriter out = response.getWriter();
+                out.print(respXML);
+                out.flush();
+                out.close();
             }
         } catch (Exception e) {
             logger.error(e.getMessage());

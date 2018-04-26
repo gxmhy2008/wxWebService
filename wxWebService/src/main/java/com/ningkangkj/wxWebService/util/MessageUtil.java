@@ -1,5 +1,6 @@
 package com.ningkangkj.wxWebService.util;
 
+import com.ningkangkj.wxWebService.entity.resp.*;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.core.util.QuickWriter;
 import com.thoughtworks.xstream.io.HierarchicalStreamWriter;
@@ -10,7 +11,6 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
@@ -38,6 +38,21 @@ public class MessageUtil {
      * 返回消息类型：图文
      */
     public static final String RESP_MESSAGE_TYPE_NEWS = "news";
+
+    /**
+     * 返回消息类型：图片
+     */
+    public static final String RESP_MESSAGE_TYPE_IMAGE = "image";
+
+    /**
+     * 返回消息类型：语音
+     */
+    public static final String RESP_MESSAGE_TYPE_VOICE = "voice";
+
+    /**
+     * 返回消息类型：视频
+     */
+    public static final String RESP_MESSAGE_TYPE_VIDEO = "video";
 
     /**
      * 请求消息类型：文本
@@ -140,7 +155,72 @@ public class MessageUtil {
         return map;
     }
 
+    /**
+     * @Description 文本消息对象转换成xml
+     * @param textMessage
+     * @return
+     */
+    public static String textMessageToXml(TextMessageResp textMessage) {
+        xStream.alias("xml", textMessage.getClass());
+        return xStream.toXML(textMessage);
+    }
 
+    /**
+     * @Description 图文消息对象转换成xml
+     * @param newsMessage
+     * @return
+     */
+    public static String newsMessageToXml(NewsMessageResp newsMessage) {
+        xStream.alias("xml", newsMessage.getClass());
+        xStream.alias("item", new Article().getClass());
+        return xStream.toXML(newsMessage);
+    }
+
+    /**
+     * @Description 图片消息对象转换成xml
+     * @param imageMessage
+     * @return
+     */
+    public static String imageMessageToXml(ImageMessageResp imageMessage) {
+        xStream.alias("xml", imageMessage.getClass());
+        return xStream.toXML(imageMessage);
+    }
+
+    /**
+     * @Description 语音消息对象转换成xml
+     * @param voiceMessage
+     * @return
+     */
+    public static String voiceMessageToXml(VoiceMessageResp voiceMessage) {
+        xStream.alias("xml", voiceMessage.getClass());
+        return xStream.toXML(voiceMessage);
+    }
+
+    /**
+     * @Description 视频消息对象转换成xml
+     * @param videoMessage
+     * @return
+     */
+    public static String videoMessageToXml(VideoMessageResp videoMessage) {
+        xStream.alias("xml", videoMessage.getClass());
+        return xStream.toXML(videoMessage);
+    }
+
+    /**
+     * @Description 音乐消息对象转换成xml
+     * @param musicMessage
+     * @return
+     */
+    public static String musicMessageToXml(MusicMessageResp musicMessage) {
+        xStream.alias("xml", musicMessage.getClass());
+        return xStream.toXML(musicMessage);
+    }
+
+    /**
+     * @Description 对象到xml的处理
+     * @Author luckypt
+     * @Date 2018/04/25
+     */
     private static XStream xStream = new XStream(new XppDriver(){
         public HierarchicalStreamWriter createWriter(Writer out){
             return new PrettyPrintWriter(out){

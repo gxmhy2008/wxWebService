@@ -5,15 +5,15 @@ package com.ningkangkj.wxWebService.entity.req;
  * @Author luckypt
  * @Date 2018/04/25
  */
-public class TextMessage extends BaseMessage {
+public class TextMessageReq extends BaseMessageReq {
     //消息内容
-    private String content;
+    private String Content;
 
     public String getContent() {
-        return content;
+        return Content;
     }
 
     public void setContent(String content) {
-        this.content = content;
+        Content = content;
     }
 }

@@ -5,25 +5,25 @@ package com.ningkangkj.wxWebService.entity.req;
  * @Author luckypt
  * @Date 2018/04/25
  */
-public class VoiceMessage extends BaseMessage {
+public class VoiceMessageReq extends BaseMessageReq {
     //语音消息媒体id，可以调用多媒体文件下载接口拉取数据
-    private String mediaId;
+    private String MediaId;
     //语音格式,如amr，speex等
-    private String format;
+    private String Format;
 
     public String getMediaId() {
-        return mediaId;
+        return MediaId;
     }
 
     public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
+        MediaId = mediaId;
     }
 
     public String getFormat() {
-        return format;
+        return Format;
     }
 
     public void setFormat(String format) {
-        this.format = format;
+        Format = format;
     }
 }

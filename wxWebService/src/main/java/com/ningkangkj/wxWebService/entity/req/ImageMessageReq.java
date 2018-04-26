@@ -5,25 +5,25 @@ package com.ningkangkj.wxWebService.entity.req;
  * @Author luckypt
  * @Date 2018/04/25
  */
-public class ImageMessage extends BaseMessage {
+public class ImageMessageReq extends BaseMessageReq {
     //图片链接(由系统生成)
-    private String picUrl;
+    private String PicUrl;
     //图片消息媒体id，可以调用多媒体文件下载接口拉取数据
-    private String mediaId;
+    private String MediaId;
 
     public String getPicUrl() {
-        return picUrl;
+        return PicUrl;
     }
 
     public void setPicUrl(String picUrl) {
-        this.picUrl = picUrl;
+        PicUrl = picUrl;
     }
 
     public String getMediaId() {
-        return mediaId;
+        return MediaId;
     }
 
     public void setMediaId(String mediaId) {
-        this.mediaId = mediaId;
+        MediaId = mediaId;
     }
 }
