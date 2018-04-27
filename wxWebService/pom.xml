@@ -15,7 +15,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <spring.version>4.1.6.RELEASE</spring.version>
+    <spring.version>4.1.7.RELEASE</spring.version>
     <mybatis.version>3.4.6</mybatis.version>
   </properties>
 
@@ -195,8 +195,26 @@
       <version>3.17</version>
     </dependency>
 
+    <!--任务调度-->
+    <!-- Enterprise Job Scheduler -->
+    <!-- scheduler begin, spring-context-support 用来支持quartz调度相关的类 -->
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context-support</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>2.2.1</version>
+    </dependency>
 
-
+    <!--cache 配置-->
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>2.6.11</version>
+    </dependency>
 
   </dependencies>
 

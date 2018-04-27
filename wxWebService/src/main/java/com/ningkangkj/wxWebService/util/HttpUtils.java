@@ -13,11 +13,11 @@ import org.apache.http.util.EntityUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.protocol.HTTP;
 
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -128,6 +128,39 @@ public class HttpUtils {
         String retSrc = EntityUtils.toString(httpResponse.getEntity());
         request.releaseConnection();
         return retSrc;
+    }
+
+    /**
+     * @Description http 请求发送xml内容
+     * @param urlStr
+     * @param xmlInfo 具体字符串
+     * @return
+     */
+    public static String sendXmlPost(String urlStr, String xmlInfo) {
+        try {
+            URL url = new URL(urlStr);
+            URLConnection con = url.openConnection();
+            con.setDoOutput(true);
+            con.setRequestProperty("Pragma:", "no-cache");
+            con.setRequestProperty("Cache-Control", "no-cache");
+            con.setRequestProperty("Content-Type", "text/xml");
+            OutputStreamWriter out = new OutputStreamWriter(con.getOutputStream());
+            out.write(new String(xmlInfo.getBytes("utf-8")));
+            out.flush();
+            out.close();
+            BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            String lines = "";
+            for (String line = br.readLine(); line != null; line = br.readLine()) {
+                lines += line;
+            }
+            return lines;  //返回请求的xml结果
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return "fail";
     }
 
     private static String getJsonStringFromGZIP(InputStream is) {

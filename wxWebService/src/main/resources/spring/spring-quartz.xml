@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--要调用的工作类-->
+    <bean id="quartzJob" class="com.ningkangkj.wxWebService.quartz.QuartzJob"></bean>
+
+    <!--定义调用对象的和调用对象的方法-->
+    <bean id="taskForToken" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <!--调用的类-->
+        <property name="targetObject">
+            <ref bean="quartzJob"/>
+        </property>
+        <!--调用类中方法-->
+        <property name="targetMethod">
+             <value>workForToken</value>
+        </property>
+    </bean>
+
+    <!--定义触发时间-->
+    <bean id="doTimeForToken" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <ref bean="taskForToken"/>
+        </property>
+        <!-- cron 表达式 -->
+        <property name="cronExpression">
+            <value>0 0 0/2 * * ?</value>
+        </property>
+    </bean>
+
+    <!-- 配置项目启动后任务就执行一次 -->
+    <bean id="doTimeForTokenSimple" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="taskForToken" />
+        <property name="startDelay" value="500" />
+        <property name="repeatInterval" value="0" />
+        <property name="repeatCount" value="0" />
+    </bean>
+
+    <!--总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序-->
+    <!--如果有多个定时调度就往总管理类的list列表里面添加就可以了-->
+    <bean id="startQuartz" lazy-init="false" autowire="no"
+        class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="triggers">
+            <list>
+                <ref bean="doTimeForTokenSimple"/>
+                <ref bean="doTimeForToken"/>
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

@@ -29,7 +29,7 @@ public class InterfaceUrlInit {
 
         InputStream in = null;
         try{
-            in = cl.getResourceAsStream("interface_url.properties");
+            in = cl.getResourceAsStream("properties/interface_url.properties");
             props.load(in);
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
@@ -38,7 +38,7 @@ public class InterfaceUrlInit {
             }
 
             props = new Properties();
-            in = cl.getResourceAsStream("wechat.properties");
+            in = cl.getResourceAsStream("properties/wechat.properties");
             props.load(in);
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
