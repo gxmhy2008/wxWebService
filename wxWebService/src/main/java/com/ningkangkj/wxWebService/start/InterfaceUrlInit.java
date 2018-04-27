@@ -33,8 +33,8 @@ public class InterfaceUrlInit {
             props.load(in);
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
-                System.out.println("key:"+key+", value:"+props.get(key));
-                logger.info("key:"+key+", value:"+props.get(key));
+//                System.out.println("key:"+key+", value:"+props.get(key));
+//                logger.info("key:"+key+", value:"+props.get(key));
             }
 
             props = new Properties();
@@ -42,8 +42,8 @@ public class InterfaceUrlInit {
             props.load(in);
             for (Object key : props.keySet()) {
                 GlobalConstants.interfaceUrlProperties.put(key, props.get(key));
-                System.out.println("key:"+key+", value:"+props.get(key));
-                logger.info("key:"+key+", value:"+props.get(key));
+//                System.out.println("key:"+key+", value:"+props.get(key));
+//                logger.info("key:"+key+", value:"+props.get(key));
             }
         }catch (IOException e) {
             e.printStackTrace();
