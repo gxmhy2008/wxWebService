@@ -69,7 +69,14 @@ public class WechatSecurity {
             String msgType = map.get("MsgType");
             System.out.println("****消息内容: "+map.get("Content"));
             if (MessageUtil.REQ_MESSAGE_TYPE_EVENT.equals(msgType)) {
-                EventDispatcher.processEvent(map);
+//                System.out.println("event message");
+                String respEventXML = EventDispatcher.processEvent(map);
+                System.out.println(respEventXML);
+                response.setCharacterEncoding("utf-8");
+                PrintWriter out = response.getWriter();
+                out.print(respEventXML);
+                out.flush();
+                out.close();
             }else{
                 //TODO 把普通消息发送给公众号客户
                 String respXML = MsgDispatcher.processMessage(map);

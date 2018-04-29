@@ -1,8 +1,7 @@
 package com.ningkangkj.wxWebService.util;
 
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import javax.activation.MimetypesFileTypeMap;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -44,7 +43,7 @@ public class HttpPostUploadUtil {
             conn.setUseCaches(false);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Connection", "Keep-Alive");
-            conn.setRequestProperty("User-Agent","Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.6)");
+            conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.6)");
             conn.setRequestProperty("Content-TYpe", "multipart/form-data;boundary=" + BOUNDARY);
 
             OutputStream out = new DataOutputStream(conn.getOutputStream());
@@ -53,9 +52,9 @@ public class HttpPostUploadUtil {
                 StringBuffer strBuf = new StringBuffer();
                 Iterator<?> iter = textMap.entrySet().iterator();
                 while (iter.hasNext()) {
-                    Map.Entry entry = (Map.Entry)iter.next();
-                    String inputName = (String)entry.getKey();
-                    String inputValue = (String)entry.getValue();
+                    Map.Entry entry = (Map.Entry) iter.next();
+                    String inputName = (String) entry.getKey();
+                    String inputValue = (String) entry.getValue();
                     if (inputValue == null) {
                         continue;
                     }
@@ -65,10 +64,65 @@ public class HttpPostUploadUtil {
                 }
                 out.write(strBuf.toString().getBytes());
             }
-        }catch (MalformedURLException e) {
+            //文件信息
+            if (fileMap != null) {
+                Iterator<?> iter = fileMap.entrySet().iterator();
+                while (iter.hasNext()) {
+                    Map.Entry entry = (Map.Entry) iter.next();
+                    String inputName = (String) entry.getKey();
+                    String inputValue = (String) entry.getValue();
+                    if (inputValue == null) {
+                        continue;
+                    }
+                    File file = new File(inputValue);
+                    String filename = file.getName();
+                    String contentType = new MimetypesFileTypeMap().getContentType(file);
+                    if (contentType == null || contentType.equals("")) {
+                        contentType = "application/octet-stream";
+                    }
+                    StringBuilder strBuf = new StringBuilder();
+                    strBuf.append("\r\n").append("--").append(BOUNDARY).append("\r\n");
+                    strBuf.append("Content-Disposition:form-data;name=\"" + inputName + "\";filename=\"" + filename
+                            + "\"\r\n");
+                    strBuf.append("Content-Type:" + contentType + "\r\n\r\n");
+                    out.write(strBuf.toString().getBytes());
+
+                    DataInputStream in = new DataInputStream(new FileInputStream(file));
+                    int bytes = 0;
+                    byte[] bufferOut = new byte[1024];
+                    while ((bytes = in.read(bufferOut)) != -1) {
+                        out.write(bufferOut, 0, bytes);
+                    }
+                    in.close();
+                }
+            }
+
+            byte[] endData = ("\r\n--" + BOUNDARY + "--\r\n").getBytes();
+            out.write(endData);
+            out.flush();
+            out.close();
+
+            //读取返回数据
+            StringBuilder strBuf = new StringBuilder();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            String line = null;
+            while ((line = reader.readLine()) != null) {
+                strBuf.append(line).append("\n");
+            }
+            res = strBuf.toString();
+            reader.close();
+            reader = null;
+        } catch (MalformedURLException e) {
+            System.out.printf("发生POST请求出错" + urlStr);
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }finally {
+            if (conn != null) {
+                conn.disconnect();
+                conn = null;
+            }
         }
+        return res;
     }
 }
