@@ -70,6 +70,7 @@
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
 
+  <!--前端控制器，所有的请求驱动都围绕这个DispatcherServlet来分派请求-->
   <servlet>
     <description>spring mvc servlet</description>
     <servlet-name>springMvc</servlet-name>

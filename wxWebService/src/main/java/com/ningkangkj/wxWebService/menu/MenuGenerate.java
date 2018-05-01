@@ -22,7 +22,7 @@ public class MenuGenerate {
         ViewButton vbt = new ViewButton();
         vbt.setName("博客");
         vbt.setType("view");
-        vbt.setUrl("http://www.ningkangkj.com:18080/index");
+        vbt.setUrl("http://testwechat1.free.ngrok.cc/");
 
         //建立子菜单
         JSONArray sub_button = new JSONArray();
@@ -43,8 +43,9 @@ public class MenuGenerate {
         System.out.println(menujson);
 
         //把自定义的菜单json串发送到微信服务器
+        //每次生成公众号菜单时需要修改access_token
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="
-                + "9_NhtIT44CJ9Q0aCfZBoQ_3DFDIHIJUj4pXIUHxaNJ-NlzYG65RKK4lQF4QoXl8BT_MNeTlBJTExx0l43mmUnsUEALkX61_tYJ3rb2P-LrPRvAeVj3fHYmMofWA47bUsU1-XDyZzphVcuX3cYGFRLhADAJVP";
+                + "9_zk1hRR6N5N4FR8aBPLjVfKQIUCdujzOYrf4vyFpgbdgHMdQR_kztUSJhwkGgLitZnFGsiSFrxNpq2_Hgd5AQ6vn5LcxGNZPyN3VmrWER8oNWAlBmUT8JUwpWs-eTjDHUlWWEG6afjd7nidl4HCZeAJAWRO";
         try {
             String rs = HttpUtils.sendPostBuffer(url, menujson.toString());
             System.out.println(rs);
