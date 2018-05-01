@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width"/>
     <title>JSSDK配置</title>
     <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/WEB-INF/static/js/jquery2.1.4.min.js"></script>--%>
     <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
 </head>
 <body>
-<h2>欢迎光临网站首页！</h2>
+    <h2>欢迎光临！</h2>
     <script type="text/javascript">
         function jssdk() {
             $.ajax({

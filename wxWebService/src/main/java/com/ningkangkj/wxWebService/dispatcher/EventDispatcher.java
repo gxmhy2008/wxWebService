@@ -1,12 +1,14 @@
 package com.ningkangkj.wxWebService.dispatcher;
 
+import com.ningkangkj.wxWebService.common.GetUserInfo;
+import com.ningkangkj.wxWebService.entity.resp.Article;
 import com.ningkangkj.wxWebService.entity.resp.ImageMessageResp;
+import com.ningkangkj.wxWebService.entity.resp.NewsMessageResp;
 import com.ningkangkj.wxWebService.util.HttpPostUploadUtil;
 import com.ningkangkj.wxWebService.util.MessageUtil;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.io.IOException;
+import java.util.*;
 
 /**
  * @Description 事件消息的业务分发处理器
@@ -21,6 +23,8 @@ public class EventDispatcher {
         switch (map.get("Event")) {
             case MessageUtil.EVENT_TYPE_SUBSCRIBE:
                 System.out.println("=============================这是关注事件!");
+                //图片消息回复
+                /*
                 ImageMessageResp imgmsg = new ImageMessageResp();
                 imgmsg.setToUserName(openid);
                 imgmsg.setFromUserName(mpid);
@@ -40,6 +44,31 @@ public class EventDispatcher {
                 imgmsg.setMediaId(mediaid);
 
                 return MessageUtil.imageMessageToXml(imgmsg);
+                */
+                //图文消息回复
+                NewsMessageResp newmsg = new NewsMessageResp();
+                newmsg.setToUserName(openid);
+                newmsg.setFromUserName(mpid);
+                newmsg.setCreateTime(new Date().getTime());
+                newmsg.setMsgType(MessageUtil.RESP_MESSAGE_TYPE_NEWS);
+
+                try {
+                    HashMap<String, String> userInfo = GetUserInfo.openidUserInfo(openid);
+                    Article article = new Article();
+                    article.setDescription("欢迎光临！");
+                    article.setPicUrl(userInfo.get("headimgurl"));//图文消息图片地址
+                    article.setTitle("尊敬的：" + userInfo.get("nickname") + ",您好！");//图文消息的标题
+                    article.setUrl("http://www.ningkangkj.com:18080/index"); //图文url链接
+                    List<Article> list = new ArrayList<>();
+                    list.add(article);
+                    newmsg.setArticles(list);
+                    newmsg.setArticleCount(list.size());
+                    return MessageUtil.newsMessageToXml(newmsg);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("==代码有问题");
+                }
+
             case MessageUtil.EVENT_TYPE_UNSUBSCRIBE:
                 System.out.println("=============================这是取消关注事件!");
                 break;
