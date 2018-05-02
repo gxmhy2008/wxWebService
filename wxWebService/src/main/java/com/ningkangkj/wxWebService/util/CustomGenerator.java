@@ -22,7 +22,7 @@ public class CustomGenerator {
 
         //java源码所在目录
         //windows目录
-        //gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
+        gc.setOutputDir("D:\\workspace\\github\\wxWebService\\wxWebService\\wxWebService\\src\\main\\java");
         //linux目录
         gc.setOutputDir("/home/Work/idea/wxWebService/wxWebService/src/main/java");
 

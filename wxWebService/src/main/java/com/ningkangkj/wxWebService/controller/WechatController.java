@@ -39,4 +39,13 @@ public class WechatController {
     public String jssdkConfig() {
         return "jssdkConfig";
     }
+
+    /**
+     * @Description 调用Jssdk接口
+     * @return
+     */
+    @RequestMapping("jssdkApply")
+    public String jssdkApply() {
+        return "jssdk/checkJsApi";
+    }
 }

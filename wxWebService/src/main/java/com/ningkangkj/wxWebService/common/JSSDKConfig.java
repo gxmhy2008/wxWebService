@@ -26,8 +26,8 @@ public class JSSDKConfig {
     public static HashMap<String, String> jsSDKSign(String url) throws NoSuchAlgorithmException, UnsupportedEncodingException {
         String nonceStr = createNonceStr();
         //TODO
-        //String timestamp = GlobalConstants.getInterfaceUrl("timestamp");
-        String timestamp = new Timestamp(new Date().getTime()).toString() ;
+        Long  timestamp =  new Date().getTime();
+        //String timestamp = new Timestamp(new Date().getTime()).toString() ;
         System.out.println("timestamp is :" + timestamp);
         String jsapiTicket = GlobalConstants.getInterfaceUrl("jsapi_ticket");
         //注意这里参数名必须全部小写，且必须有序
@@ -39,7 +39,7 @@ public class JSSDKConfig {
         String signature = byteTOHex(crypt.digest());
         HashMap<String, String> jssdk = new HashMap<>();
         jssdk.put("appId", GlobalConstants.getInterfaceUrl("Appid"));
-        jssdk.put("timestamp", timestamp);
+        jssdk.put("timestamp", timestamp.toString());
         jssdk.put("nonceStr", nonceStr);
         jssdk.put("signature", signature);
         return jssdk;
