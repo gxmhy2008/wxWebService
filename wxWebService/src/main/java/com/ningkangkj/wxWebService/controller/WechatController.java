@@ -2,11 +2,13 @@ package com.ningkangkj.wxWebService.controller;
 
 import com.ningkangkj.wxWebService.common.JSSDKConfig;
 import com.ningkangkj.wxWebService.common.Message;
+import com.ningkangkj.wxWebService.util.HttpPostUploadUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -41,11 +43,20 @@ public class WechatController {
     }
 
     /**
-     * @Description 调用Jssdk接口
      * @return
+     * @Description 调用Jssdk接口
      */
     @RequestMapping("jssdkApply")
     public String jssdkApply() {
         return "jssdk/checkJsApi";
+    }
+
+    @RequestMapping("uploadFile")
+    public void uploadFile(){
+        HttpPostUploadUtil upFile = new HttpPostUploadUtil();
+        Map<String, String> fileImage = new HashMap<>();
+        fileImage.put("lyc1.jpg","E:\\壁纸\\lyc.jpg");
+        String res = upFile.formUpload(null, fileImage);
+        System.out.println(res);
     }
 }

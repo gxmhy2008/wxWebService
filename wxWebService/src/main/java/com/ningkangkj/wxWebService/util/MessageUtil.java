@@ -146,6 +146,8 @@ public class MessageUtil {
         //遍历所有子节点
         for (Element e : elementList) {
             map.put(e.getName(), e.getText());
+            //打印请求的xml
+            //System.out.println(e.getName() + "  "+ e.getText());
         }
 
         //释放资源
