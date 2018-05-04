@@ -44,7 +44,7 @@ public class HttpPostUploadUtil {
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Connection", "Keep-Alive");
             conn.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows; U; Windows NT 6.1; zh-CN; rv:1.9.2.6)");
-            conn.setRequestProperty("Content-TYpe", "multipart/form-data;boundary=" + BOUNDARY);
+            conn.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + BOUNDARY);
 
             OutputStream out = new DataOutputStream(conn.getOutputStream());
             //文本信息

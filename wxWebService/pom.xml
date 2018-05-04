@@ -139,11 +139,11 @@
       <artifactId>httpmime</artifactId>
       <version>4.3.6</version>
     </dependency>
-    <dependency>
+<!--    <dependency>
       <groupId>commons-httpclient</groupId>
       <artifactId>commons-httpclient</artifactId>
       <version>3.1</version>
-    </dependency>
+    </dependency>-->
     <!--JSON包-->
     <!-- json包 -->
     <dependency>
