@@ -117,7 +117,7 @@ public class HttpUtils {
      * @param params
      * @return
      */
-    public static String sendPostBuffer(String urls, String params) throws IOException {
+    public static String sendPostJson(String urls, String params) throws IOException {
         HttpPost request = new HttpPost(urls);
         StringEntity se = new StringEntity(params, HTTP.UTF_8);
         request.setEntity(se);

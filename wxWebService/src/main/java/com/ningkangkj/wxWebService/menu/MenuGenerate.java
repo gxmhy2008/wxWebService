@@ -47,7 +47,7 @@ public class MenuGenerate {
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="
                 + "9_WBX5_FgYY85c6Hl9FF4b07O0wEn3Ghg14dM37QbLVSyEWuaTA4yhaiGsFI6pQTwkZPhNwH-_vAMyPZhqvgCq1MWexcFMLPYVzsucEEl4pZGQk1mVtF3P_ZA3PQiY_ujmEJ9Zq-kA4wUGgWvoEHKaAGAUXA";
         try {
-            String rs = HttpUtils.sendPostBuffer(url, menujson.toString());
+            String rs = HttpUtils.sendPostJson(url, menujson.toString());
             System.out.println(rs);
         }catch (IOException e) {
             System.out.println("请求错误");
