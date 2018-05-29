@@ -20,9 +20,9 @@ public class MenuGenerate {
         cbt.setType("click");
 
         ViewButton vbt = new ViewButton();
-        vbt.setName("博客");
+        vbt.setName("微信授权");
         vbt.setType("view");
-        vbt.setUrl("http://testwechat1.free.ngrok.cc/wechatconfig/jssdkApply");
+        vbt.setUrl("https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx74247184de3d1a8f&redirect_uri=http%3a%2f%2f2pgsr8.natappfree.cc%2fopenid&response_type=code&scope=snsapi_base&state=http://2pgsr8.natappfree.cc/wx/h5/grzx#wechat_redirect");
 
         //建立子菜单
         JSONArray sub_button = new JSONArray();
@@ -45,7 +45,7 @@ public class MenuGenerate {
         //把自定义的菜单json串发送到微信服务器
         //每次生成公众号菜单时需要修改access_token
         String url = "https://api.weixin.qq.com/cgi-bin/menu/create?access_token="
-                + "9_WBX5_FgYY85c6Hl9FF4b07O0wEn3Ghg14dM37QbLVSyEWuaTA4yhaiGsFI6pQTwkZPhNwH-_vAMyPZhqvgCq1MWexcFMLPYVzsucEEl4pZGQk1mVtF3P_ZA3PQiY_ujmEJ9Zq-kA4wUGgWvoEHKaAGAUXA";
+                + "10_H77CyRlVjffBtu2ckIm-TdbG0BAGpJfdvRgR9massWJNRZVYvL7PBkj7YricUUheQ2W2V9Z_MKH8VRBuXtmO9IYq95U_EH4f2EGsJS96bgz85aN_yjLLi_CvainboLfmYV47_W8XmNdipjDkGRHbAFAJUK";
         try {
             String rs = HttpUtils.sendPostJson(url, menujson.toString());
             System.out.println(rs);

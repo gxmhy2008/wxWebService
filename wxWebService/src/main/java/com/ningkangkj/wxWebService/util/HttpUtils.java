@@ -215,11 +215,15 @@ public class HttpUtils {
      */
     public static String buildUrl(String reqUrl, Map<String, String> params) {
         StringBuilder query = new StringBuilder();
-        Set<String> set = params.keySet();
-        for (String key : set) {
-            query.append(String.format("%s=%s&", key, params.get(key)));
+        if (params != null) {
+            Set<String> set = params.keySet();
+            for (String key : set) {
+                query.append(String.format("%s=%s&", key, params.get(key)));
+            }
+            return reqUrl+ "?" + query.toString();
+        }else{
+            return reqUrl;
         }
-        return reqUrl+ "?" + query.toString();
     }
 
 }
