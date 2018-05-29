@@ -21,7 +21,7 @@ import java.util.HashMap;
 @RequestMapping("/authrz")
 public class OauthCodeGetUserInfo {
     private String openid;
-    private String accessToken;
+    private String accessToken;   //网页授权秘钥，非普通接口的秘钥
     private String code;
     private String unionid;
     private HashMap<String, String> params = new HashMap<>();
@@ -54,12 +54,41 @@ public class OauthCodeGetUserInfo {
         accessToken = JSONObject.fromObject(tokenrs).getString("access_token");
         openid = JSONObject.fromObject(tokenrs).getString("openid");
         // unionid = JSONObject.fromObject(tokenrs).getString("unionid");
-        //通过Openid获取用户详细信息
+        //通过Openid和网页授权秘钥获取用户详细信息
         params.clear();
         params.put("access_token", accessToken);
         params.put("openid", openid);
+        params.put("lang", "zh_CN");
+        String userinfors = HttpUtils.sendGet(GlobalConstants.getInterfaceUrl("WX_GETUSERINFO"), params);
+        System.out.println(userinfors);
+        //通过普通接口秘钥和openid获取用户是否关注该公众号，0为关注，1关注
+        params.clear();
+        params.put("access_token", GlobalConstants.getInterfaceUrl("access_token"));
+        params.put("openid", openid);
+        params.put("lang", "zh_CN");
+        String subscribers = HttpUtils.sendGet(GlobalConstants.getInterfaceUrl("openIdUserInfoUrl"), params);
+        System.out.println(subscribers);
 
-        return null;
+        //拼接获取到的用户信息
+        params.clear();
+        params.put("subscribe", JSONObject.fromObject(subscribers).getString("subscribe"));
+        params.put("unionid", unionid);
+        params.put("openid", openid);
+        params.put("nickname",
+                JSONObject.fromObject(userinfors).getString("nickname"));
+        params.put("sex", JSONObject.fromObject(userinfors).getString("sex"));
+        params.put("province",
+                JSONObject.fromObject(userinfors).getString("province"));
+        params.put("city", JSONObject.fromObject(userinfors).getString("city"));
+        params.put("headimgurl",
+                JSONObject.fromObject(userinfors).getString("headimgurl"));
 
+        return params;
+
+    }
+
+    @SuppressWarnings("unused")
+    private static String create_timestamp() {
+        return Long.toString(System.currentTimeMillis() / 1000);
     }
 }
