@@ -38,15 +38,15 @@
 
     <!--总管理类 如果将lazy-init='false'那么容器启动就会执行调度程序-->
     <!--如果有多个定时调度就往总管理类的list列表里面添加就可以了-->
-    <bean id="startQuartz" lazy-init="false" autowire="no"
+<!--    <bean id="startQuartz" lazy-init="false" autowire="no"
         class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
         <property name="triggers">
             <list>
-                <ref bean="doTimeForTokenSimple"/>
-                <ref bean="doTimeForToken"/>
+                &lt;!&ndash;<ref bean="doTimeForTokenSimple"/>
+                <ref bean="doTimeForToken"/>&ndash;&gt;
             </list>
         </property>
-    </bean>
+    </bean>-->
 
 
 </beans>

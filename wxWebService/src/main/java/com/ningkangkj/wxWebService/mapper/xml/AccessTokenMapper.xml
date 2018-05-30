@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ningkangkj.wxWebService.mapper.AccessTokenMapper">
+	<select id="selectUpdateCount" resultType="int">
+		select count(1) from weixin_access_token
+		<where>
+			round((UNIX_TIMESTAMP(now()) - UNIX_TIMESTAMP(insertDate))/60) > 90
+			and id=#{id}
+		</where>
+	</select>
+
+	<select id="getJsapiTicket" resultType="String">
+		select jsapi_ticket from weixin_access_token
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<select id="getAccessToken" resultType="String">
+		select access_token from weixin_access_token
+		<where>
+			id = #{id}
+		</where>
+	</select>
+
+	<select id="selectWxInfo" resultType="com.ningkangkj.wxWebService.entity.AccessToken">
+		select * from weixin_access_token where id = #{appid}
+	</select>
+
+	<update id="updateAccessToken">
+		update weixin_access_token
+		set access_token = #{access_token},
+		jsapi_ticket = #{jsapi_ticket},
+		insertDate = now()
+		<where>
+			id = #{id}
+		</where>
+	</update>
+
+	<insert id="insertRecord">
+		insert into weixin_access_token(id
+		<if test="record.accessToken != null and record.accessToken !='' ">,access_token</if>
+		<if test="record.jsapiTicket != null and record.jsapiTicket !='' ">,jsapi_ticket</if>
+		<if test="record.insertDate != null ">,insertDate</if>
+		<if test="record.jsapiDate != null">,jsapiDate</if>
+		)
+
+		values(#{record.id}
+		<if test="record.accessToken != null and record.accessToken !='' ">,#{record.accessToken}</if>
+		<if test="record.jsapiTicket != null and record.jsapiTicket !='' ">,#{record.jsapiTicket}</if>
+		<if test="record.insertDate != null">,#{record.insertDate}</if>
+		<if test="record.jsapiDate != null">,#{record.jsapiDate}</if>
+		)
+	</insert>
+
+</mapper>

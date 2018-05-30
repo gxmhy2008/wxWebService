@@ -17,7 +17,6 @@
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
 
-
   <context-param>
     <param-name>spring.profiles.active</param-name>
     <param-value>dev</param-value>
@@ -64,6 +63,11 @@
     <description>spring 监听器</description>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
+
+  <listener>
+    <description>微信秘钥获取</description>
+    <listener-class>com.ningkangkj.wxWebService.task.UpdateWxToken</listener-class>
+  </listener>
   
   <!--防止内存溢出-->
   <listener>
@@ -87,7 +91,7 @@
   </servlet-mapping>
 
     <!--初始化配置-->
-    <servlet>
+<!--    <servlet>
         <servlet-name>interface_url-init_servlet</servlet-name>
         <servlet-class>com.ningkangkj.wxWebService.start.InterfaceUrlInitServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
@@ -95,7 +99,7 @@
   <servlet-mapping>
     <servlet-name>interface_url-init_servlet</servlet-name>
     <url-pattern>*.prop</url-pattern>
-  </servlet-mapping>
+  </servlet-mapping>-->
   <welcome-file-list>
     <welcome-file>/index.jsp</welcome-file>
   </welcome-file-list>
